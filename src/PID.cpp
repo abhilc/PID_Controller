@@ -33,12 +33,12 @@ double PID::TotalError() {
 
 double PID::OnlyProportional()
 {
-  return PID::p_error;
+  return (PID::p_error * PID::Kp);
 }
 
 double PID::ProportionalAndDerivative()
 {
-  return PID::p_error + PID::d_error;
+  return (PID::p_error * PID::Kp) + (PID::d_error * PID::Kd);
 }
 
 double PID::run(double p[])

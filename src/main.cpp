@@ -68,6 +68,8 @@ int main() {
            */
           //pid.twiddle();
           pid.UpdateError(cte);
+          //steer_value = -pid.OnlyProportional();
+          //steer_value = -pid.ProportionalAndDerivative();
           steer_value = -pid.TotalError();
           
           // DEBUG
