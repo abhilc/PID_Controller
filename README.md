@@ -31,7 +31,7 @@ Twiddle
 Final Result 
 Twiddle
 <p>
-    <img src="images/Final.png"/>
+    <img src="images/FInal.png"/>
 </p>
        
 
