@@ -48,11 +48,11 @@ double PID::run(double p[])
 
 void PID::twiddle()
 {
-  double p[3] = {0.0, 0.0, 0.0};
-  double dp[3] = {1.0, 1.0, 1.0};
+  double p[3] = {0.27, 0.001, 3.0};
+  double dp[3] = {0.05, 0.001, 0.05};
   double best_error = 1;
   
-  while((dp[0] + dp[1] + dp[2]) > 0.01)
+  if((dp[0] + dp[1] + dp[2]) > 0.01)
   {
     
     for(int i=0;i<3;i++)

@@ -37,9 +37,9 @@ int main() {
   double tau_p, tau_i, tau_d;
   tau_p = 0.1;
   tau_i = 0.0;
-  tau_d = 0.3;
+  tau_d = 2.5;
   
-  //pid.Init(tau_p, tau_i, tau_d);
+  pid.Init(tau_p, tau_i, tau_d);
 
   h.onMessage([&pid](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, 
                      uWS::OpCode opCode) {
@@ -66,7 +66,7 @@ int main() {
            * NOTE: Feel free to play around with the throttle and speed.
            *   Maybe use another PID controller to control the speed!
            */
-          pid.twiddle();
+          //pid.twiddle();
           pid.UpdateError(cte);
           steer_value = -pid.TotalError();
           
