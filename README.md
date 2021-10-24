@@ -1,6 +1,25 @@
 # CarND-Controls-PID
 Self-Driving Car Engineer Nanodegree Program
 
+# PID Controller 
+PID stands for Proportional, Integral and Differential parameters required to compute the final steering angle that would be needed to maneuver the vehicle using the actuators in the car, against the Cross Track Error(Also could be referred to as the reference trajectory that the ego vehicle should ideally follow)
+
+The following details describe the experiments tried out in the process of implementing the PID Controller:
+
+# Algorithm
+1. The Steering value is directly proportional to the cross track error. Thus, it must be represented as the product of the actual CTE and a constant. Let this constant be called as 'proportional constant' or tau_p. Therefore, steering value is given by steering_angle = -tau_p * CTE. 
+2. Step 1 is implemented in PID.cpp file on lines 34-37. This experiment led to overshooting, because the steering does not countersteer. A new constant need to be added to address this. 
+3. To address the problem in Step 2, A differential constant, tau_d was added to the equation. 
+   Now the new steering angle is given by steering_angle = -tau_p * CTE - tau_d * (prev_cte - current_cte). This is implemented on lines 39-42 in pid.cpp file. The    overshooting problem was solved.
+4. Finally, an integral CTE was added. This is used to address the initial misalignment of the wheels(or initial bias). Since in the simulator, assuming the wheels are perfectly aligned, this value was set to zero. 
+5. The total error function is implemented in PID.cpp file from lines 29-31. These lines implement the final equation: steering_angle = -tau_p * CTE - tau_i * sum(CTE) - tau_d * (differential_cte)
+6. Although twiddle is implemented on lines 49-93. More tuning of hyperparameters was still required for the maneuvers to be perfect. Therefore, the individual coefficients were manually tuned to reach the optimal maneuvers. 
+
+
+# Reflection
+1. Twiddle algorithm is implemented on lines 49-93 in PID.cpp file. This algorithm can be improved by tuning the hyperparameters(p and dp), such that the values are computed by the algorithm instead of manually setting them. 
+2. Even with tuning the parameters, there's slight overshoot and swaying. This could perhaps be improved by more tweaking of the parameters. 
+
 ---
 
 ## Dependencies
